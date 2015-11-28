@@ -1,0 +1,8 @@
+/* CSS declarations go here */
+.hidden_div{
+	display:none;
+}
+
+.thumbnail{height:500px;}
+
+/*body{padding-top:60px;}*/
