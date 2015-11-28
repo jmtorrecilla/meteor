@@ -5,6 +5,9 @@ if (Meteor.isClient) {
 	/////
 	// template helpers 
 	/////
+	Accounts.ui.config({
+		passwordSignupFields: "USERNAME_AND_EMAIL"
+	});
 
 	// helper function that returns all available websites
 	Template.website_list.helpers({
@@ -13,6 +16,14 @@ if (Meteor.isClient) {
 		}
 	});
 
+	Template.body.helpers({username:function(){
+			if (Meteor.user()){
+				return Meteor.user().username;			
+			} else {
+				return "Anonymous Internet User";
+			}
+		}
+	});
 
 	/////
 	// template events 
@@ -67,27 +78,27 @@ if (Meteor.isServer) {
     if (!Websites.findOne()){
     	console.log("No websites yet. Creating starter data.");
     	  Websites.insert({
-    		title:"Goldsmiths Computing Department", 
-    		url:"http://www.gold.ac.uk/computing/", 
-    		description:"This is where this course was developed.", 
+    		title:"My Curriculum Vitae", 
+    		url:"http://www.jesusmartineztorrecilla.com", 
+    		description:"My CV", 
     		createdOn:new Date()
     	});
     	 Websites.insert({
-    		title:"University of London", 
-    		url:"http://www.londoninternational.ac.uk/courses/undergraduate/goldsmiths/bsc-creative-computing-bsc-diploma-work-entry-route", 
-    		description:"University of London International Programme.", 
+    		title:"Tejiendo Textos", 
+    		url:"http://www.tejiendotextos.com", 
+    		description:"Web to improve spanish writing", 
     		createdOn:new Date()
     	});
     	 Websites.insert({
-    		title:"Coursera", 
-    		url:"http://www.coursera.org", 
-    		description:"Universal access to the world’s best education.", 
+    		title:"Veterinario Cameros", 
+    		url:"http://www.veterinariocameros.com", 
+    		description:"My vet's Web Site" ,
     		createdOn:new Date()
     	});
-    	Websites.insert({
-    		title:"Google", 
-    		url:"http://www.google.com", 
-    		description:"Popular search engine.", 
+    	 Websites.insert({
+    		title:"Linkedin", 
+    		url:"https://es.linkedin.com/in/jesús-martínez-torrecilla-8256a870", 
+    		description:"My LinkedIn account",
     		createdOn:new Date()
     	});
     }

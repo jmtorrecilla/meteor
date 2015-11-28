@@ -15,6 +15,9 @@
 	      	{{> loginButtons}}
 	      	</div>
 	      </nav>
+	      <div class="container">
+	      	<h1>Welcome to Site share {{username}}!</h1>
+	      </div>
 	    </div>
 	  </div>
 	</nav>
@@ -27,9 +30,11 @@
 
 
 <template name="website_form">
-	<a class="btn btn-default js-toggle-website-form" href="#">
-  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-	</a>
+	{{#if currentUser}}
+		<a class="btn btn-default js-toggle-website-form" href="#">
+	  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		</a>
+	{{/if}}
 	<div id="website_form" class="hidden_div">
 		<form class="js-save-website-form">
 		  <div class="form-group">
@@ -52,9 +57,10 @@
 
 <!-- template that displays several website items -->
 <template name="website_list">
+
 	<ol>
 	{{#each websites}}
-	{{>website_item}}
+		{{>website_item}}
 	{{/each}}
 	</ol>
 </template>
