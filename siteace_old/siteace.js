@@ -60,10 +60,23 @@ if (Meteor.isClient) {
 
 			// here is an example of how to get the url out of the form:
 			var url = event.target.url.value;
-			console.log("The url they entered is: "+url);
-			
-			//  put your website saving code in here!	
-
+			var title = event.target.title.value;
+			var description = event.target.description.value;
+			if(url && description){
+				console.log("The url they entered is: "+url+ " title: " + title + " Description: " + description);
+				if(Meteor.user()){
+					Websites.insert({
+			    		title:title, 
+			    		url:url, 
+			    		description:description, 
+			    		createdOn:new Date(),
+			    		createdBy:Meteor.user()._id
+		    		});
+				}
+				$("#website_form").modal('hide');
+			} else {
+				alert("should have an URL and a description");
+			}
 			return false;// stop the form submit from reloading the page
 
 		}
@@ -81,25 +94,29 @@ if (Meteor.isServer) {
     		title:"My Curriculum Vitae", 
     		url:"http://www.jesusmartineztorrecilla.com", 
     		description:"My CV", 
-    		createdOn:new Date()
+    		createdOn:new Date(),
+    		createdBy:"admministrator"
     	});
     	 Websites.insert({
     		title:"Tejiendo Textos", 
     		url:"http://www.tejiendotextos.com", 
     		description:"Web to improve spanish writing", 
-    		createdOn:new Date()
+    		createdOn:new Date(),
+    		createdBy:"admministrator"
     	});
     	 Websites.insert({
     		title:"Veterinario Cameros", 
     		url:"http://www.veterinariocameros.com", 
     		description:"My vet's Web Site" ,
-    		createdOn:new Date()
+    		createdOn:new Date(),
+    		createdBy:"admministrator"
     	});
     	 Websites.insert({
     		title:"Linkedin", 
     		url:"https://es.linkedin.com/in/jesús-martínez-torrecilla-8256a870", 
     		description:"My LinkedIn account",
-    		createdOn:new Date()
+    		createdOn:new Date(),
+    		createdBy:"admministrator"
     	});
     }
   });
